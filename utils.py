@@ -15,12 +15,16 @@ def get_streams_and_position(song, stream_num, pos_num):
 
     return tmp,tmp2
 
-def standardize_serie(trend, rank = False, fixed_length = 150):
+def standardize_serie(trend, rank = False, normalize = True, fixed_length = 150):
     if rank:
         i = 1
     else:
         i = 0
+    if normalize:        
         trend= trend[i]/max(trend[i])
+    else:
+        trend= trend[i]
+        
     trend = np.array(trend)        
     if len(trend)>=fixed_length:
        return trend[:fixed_length]
